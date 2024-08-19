@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome User</title>
+    <link href="stylesheet.css" rel="stylesheet" />
+    <style>
+        body {
+            text-align: center;
+            margin-top: 50px;
+            background-color: var(--body-color);
+          }
+          .hidden {
+            display: none;
+          }
+          .popup {
+            background-color: #fff;
+            width: 450px;
+            padding: 30px 40px;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            top: 40%;
+            left: 50%;
+            right: 50%;
+            border-radius: 8px;
+            font-family: "Aclonica", sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center horizontally */
+          }
+          .btn{
+            font-size: 16px;
+            border-radius: 30px;
+            border-top-right-radius: 0;
+            transition: 0.5s;
+            font-family: "Aclonica", sans-serif;
+            margin: 10px 0; /* Add vertical spacing between buttons */
+          }
+          .btn:hover {
+            border-top-right-radius: 30px;
+            border-top-left-radius: 0;
+          }
+          .popup button {
+            display: block;
+            background-color: transparent;
+            font-size: 20px;
+            background-color: var(--first-color);
+            padding:15px;
+            border-radius: 30px;
+            border-top-right-radius: 0;
+            color: black;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            margin: 10px 0; /* Add vertical spacing between buttons */
+          }
+          button:hover{
+            border-top-right-radius: 30px;
+            border-top-left-radius: 0;
+          }
+          .popup h1 {
+            font-size: 25px;
+            text-align: center;
+            margin: 20px 0;
+            color: hsl(22, 100%, 8%);
+          }
+          .popup p {
+            font-family: "Montserrat", sans-serif;
+          }
+          a {
+            display: block;
+            width: 150px;
+            text-align: center;
+            justify-content: center;
+            background-color: var(--first-color);
+            color: black;
+            text-decoration: none;
+            padding: 5px 0;
+          }
+    </style>
+  </head>
+  <body>
+    <div class="popup">
+      <h1 id="welcomeMessage">Hello</h1>
+      <p>
+        Bite into happiness with our freshly grilled patties, savor the taste of
+        our handpicked ingredients, and enjoy a meal made with love just for
+        you.
+        <span>Sit back, relax, and let the burger magic begin!</span>
+      </p>
+      <a href="detail.html" class="btn" style="left: 60px; top: 10px"
+        >View Menus</a
+      >
+      <button id="logoutButton" class="hidden logbtn"> log out</button>
+
+      
+    </div>
+
+    <script>
+      var user = localStorage.getItem("user");
+      if (user) {
+        var parsedUser = JSON.parse(user);
+        document.getElementById(
+          "welcomeMessage"
+        ).innerHTML = `Hello ${parsedUser.name}`;
+        document.getElementById("logoutButton").classList.remove("hidden");
+      } else {
+        document.getElementById(
+          "welcomeMessage"
+        ).innerHTML = `Hello,please <a href='login.html'> login</a>`;
+      }
+      document.getElementById("logoutButton").addEventListener("click",function(){
+            localStorage.removeItem("user");
+            window.location.href="indexmain.html";
+     });
+    </script>
+  </body>
+</html>
