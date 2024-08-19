@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="stylesheet.css" rel="stylesheet">
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--body-color);
+        }
+        form{
+            width:500px;
+            padding:40px;
+           box-shadow:0 0 10px rgba(0,0,0,0.1);
+           margin-top:150px;
+           padding-top:3.5rem;
+           align-items: center;
+           overflow:hidden;
+        }
+        form h2{
+            color:black;
+        }
+        a{
+            text-decoration: none;
+        }
+        input{
+            width:100%;
+            margin:10px 0;
+            padding:10px;
+            box-sizing: border-box;
+            outline:none;
+            border:none;
+            
+        }
+        button{
+            display: block;
+            background-color: transparent;
+            font-size: 20px;
+            background-color: var(--first-color);
+            padding:15px;
+            border-radius: 30px;
+            border-top-right-radius: 0;
+            color: black;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            margin: 10px 0; /* Add vertical spacing between buttons */
+          }
+          
+    </style>
+</head>
+<body>
+    <form id="loginForm">
+        <h2>LoginForm</h2>
+        <input type="text" placeholder="Username" required id="username"/>
+        <input type="password" placeholder="Password" required id="password">
+        <button type="submit"> Login</button>
+        &nbsp <a href="register.html">Go to Register</a>
+    </form>
+    <script>
+        document.getElementById("loginForm").addEventListener("submit",function(event){
+            event.preventDefault();
+            var username=document.getElementById("username").value;
+            var password=document.getElementById("password").value;
+            var user=localStorage.getItem(username);
+            if(user){
+                var parsedUser=JSON.parse(user);
+                if(parsedUser.password === password){
+                    localStorage.setItem("user",JSON.stringify(parsedUser));
+                    window.location.href="index1.html";
+                    
+                }
+                else{
+                    alert("Incorrect password");
+                }
+            }
+            else{
+                alert("User not found");
+            }
+        });
+
+        
+    </script>
+</body>
+</html>
